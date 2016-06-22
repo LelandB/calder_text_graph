@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>SVG text warping Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .warp {
+            filter: url(#warp);
+            font-family: sans-serif;
+            font-size: 70px;
+            fill: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h2>Text Effects Text</h2>
+    <p>This a some SVG to learn with. Does it work?</p>
+    <svg width="700" height="500">
+        <defs>
+        <filter id="warp">
+<!--
+            <feMorphology radius="3" operator="dilate" />
+            <feComponentTransfer>
+                <feFuncR type="table" tableValues="1 0.5" />
+            </feComponentTransfer>
+            <feMerge result="text">
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+-->
+            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="1" result="turb1" />
+            <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="40" in="SourceGraphic" in2="turb1" />
+        </filter>
+            </defs>
+        <text class="warp" x="30" y="100">An SVG Filter</text>
+
+    </svg>
+</body>
+
+</html>
